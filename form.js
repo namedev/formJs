@@ -144,7 +144,10 @@ function Form(element, options) {
                 results.invalid = true;
             } else {
                 let firstChar = value.charAt(0);
-                results.invalid = !/^[a-zA-Z]$/.test(firstChar);
+                results.invalid = !/^[\p{L} ]+$/u.test(firstChar);
+            }
+
+            if (results.invalid) {
                 results.errorMessage = 'Invalid format';
             }
             return results;
